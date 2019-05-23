@@ -1,18 +1,15 @@
 ENV['RACK_ENV'] = 'test'
 ENV['ENVIRONMENT'] = 'test'
 
-require File.join(File.dirname(__FILE__), '..', 'lib/app.rb')
+require File.join(File.dirname(__FILE__), '..', 'app.rb')
 
 require 'capybara'
 require 'capybara/rspec'
-# require 'coveralls'
 require 'rspec'
 require 'simplecov'
 require 'simplecov-console'
 require 'sinatra'
 require_relative './setup_test_database'
-
-# Coveralls.wear!
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::Console,
@@ -23,7 +20,7 @@ SimpleCov.start
 Capybara.app = BookmarkManager
 
 RSpec.configure do |config|
-
+  require_relative './features/web_helpers.rb'
   config.before(:each) do
     setup_test_database
   end

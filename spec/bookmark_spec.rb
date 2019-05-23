@@ -2,22 +2,24 @@ require 'bookmark'
 require 'database_helpers'
 
 describe Bookmark do
-  describe '.all' do
+  describe '#all' do
     it 'returns all bookmarks' do
       bookmark = Bookmark.add(url: "http://www.makersacademy.com", title: "Makers Academy")
+      Bookmark.add(url: "http://google.com", title: "Google")
+      Bookmark.add(url: "http://twitter.com", title: "Twitter")
 
       bookmarks = Bookmark.all
 
-      expect(bookmarks.length).to eq 1
+      expect(bookmarks.length).to eq 3
       expect(bookmarks.first).to be_a Bookmark
       expect(bookmarks.first.url).to eq 'http://www.makersacademy.com'
-      expect(bookmarks.first.title).to eq 'Makers Academy' 
+      expect(bookmarks.first.title).to eq 'Makers Academy'
       expect(bookmarks.first.id).to eq bookmark.id
     end
   end
 
-  describe '.add' do
-    it 'adds a new bookmark' do 
+  describe '#add' do
+    it 'adds a new bookmark' do
       bookmark = Bookmark.add(url: 'https://en.wikipedia.org/wiki/Database', title: 'Wiki Database')
       persisted_data = persisted_data(id: bookmark.id)
 
