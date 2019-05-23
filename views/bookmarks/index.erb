@@ -5,8 +5,13 @@
     <a href="<%= bookmark.url %>" target="_blank">
       <%= bookmark.title %>
     </a>
-    <form action='/bookmarks/<%= bookmark.id %>' method='delete'>
-      <button type='submit' name='id' value='<%= bookmark.id %>'>Delete</button>
+    <form action="/bookmarks/<%= bookmark.id %>" method='post'>
+      <input type='hidden' name='_method' value='DELETE' />
+      <input type='submit' value='Delete'/>
+    </form>
+    <form action="/bookmarks/<%= bookmark.id %>" method='post'>
+      <input type='hidden' name='_method' value='PATCH' />
+      <input type='submit' value='Update'/>
     </form>
   </li>
 <% end %>

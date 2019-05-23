@@ -29,4 +29,20 @@ describe Bookmark do
       expect(bookmark.url).to eq 'https://en.wikipedia.org/wiki/Database'
     end
   end
+
+  describe '#delete' do
+    it 'deletes a bookmark' do
+      bookmark = Bookmark.add(url: 'https://en.wikipedia.org/wiki/Database', title: 'Wiki Database')
+      Bookmark.delete(id: bookmark.id)
+      expect(Bookmark.all).to be_empty
+    end
+  end
+
+  describe '#find' do
+    it 'updates a bookmark' do
+    bookmark = Bookmark.add(url: 'https://en.wikipedia.org/wiki/Database', title: 'Wiki Database')
+    found = Bookmark.find(id: bookmark.id)
+    expect(found).to eq ({ "url" => 'https://en.wikipedia.org/wiki/Database', "title" => 'Wiki Database' })
+    end
+  end
 end
