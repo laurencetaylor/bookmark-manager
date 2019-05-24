@@ -9,8 +9,8 @@
       <input type='hidden' name='_method' value='DELETE' />
       <input type='submit' value='Delete'/>
     </form>
-    <form action="/bookmarks/<%= bookmark.id %>" method='post'>
-      <input type='hidden' name='_method' value='PATCH' />
+    <form action="/bookmarks/<%= bookmark.id %>/update" method='post'>
+      <input type='hidden' name='_method' value='GET' />
       <input type='submit' value='Update'/>
     </form>
   </li>
