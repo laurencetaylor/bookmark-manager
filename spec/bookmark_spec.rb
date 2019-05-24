@@ -39,10 +39,20 @@ describe Bookmark do
   end
 
   describe '#find' do
-    it 'updates a bookmark' do
+    it 'finds a bookmark' do
     bookmark = Bookmark.add(url: 'https://en.wikipedia.org/wiki/Database', title: 'Wiki Database')
     found = Bookmark.find(id: bookmark.id)
     expect(found).to eq ({ "url" => 'https://en.wikipedia.org/wiki/Database', "title" => 'Wiki Database' })
+    end
+  end
+
+  describe '#update' do
+    it 'updates a bookmark' do
+      bookmark = Bookmark.add(url: 'https://en.wikipedia.org/wiki/Database', title: 'Wiki Database')
+      Bookmark.update(id: bookmark.id, url: 'http://google.com', title: 'Google')
+      updated_bookmark = Bookmark.find(id: bookmark.id)
+      expect(updated_bookmark['url']).to eq 'http://google.com'
+      expect(updated_bookmark['title']).to eq 'Google' 
     end
   end
 end
